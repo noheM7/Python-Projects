@@ -13,7 +13,7 @@ class DebitCardPayment(Car):
         print('your purchase amount of {} exceeded your $100 limit ' .format(amount))
 
 
-    obj = DebitCardPayment()
-    obj.paySlip("$400")
-    obj.payment("$400")
+obj = DebitCardPayment()
+obj.paySlip("$400")
+obj.payment("$400")
 
