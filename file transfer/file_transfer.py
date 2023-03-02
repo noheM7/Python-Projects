@@ -15,6 +15,7 @@ from tkinter import *
 import tkinter.filedialog
 import os
 import shutil
+import datetime
 
 
 class ParentWindow(Frame):
@@ -53,14 +54,21 @@ class ParentWindow(Frame):
             self.destination_dir.insert(0, selectDestDir)
 
 
-        #transfer files function
+        #transfer files that was been edited past function
     def transferFiles(self):
             source=self.source_dir.get()
             destination=self.destination_dir.get()
             source_files=os.listdir(source)
+            now = datetime.datetime.now()
+            ago = now-datetime.timedelta(hours=24)
             for i in source_files:
+                path = os.path.join(source, i)
+                st = os.stat(path)
+                mtime = datetime.datetime.fromtimestamp(st.st_mtime)
+            if mtime > ago:
                 shutil.move(source + '/' + i, destination)
-                print(i +'was successfully transferred.')
+                print(i + ' is transferred.')
+            
                 
     def exit_program(self):
         
