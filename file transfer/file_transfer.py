@@ -65,10 +65,10 @@ class ParentWindow(Frame):
                 path = os.path.join(source, i)
                 st = os.stat(path)
                 mtime = datetime.datetime.fromtimestamp(st.st_mtime)
-            if mtime > ago:
-                shutil.move(source + '/' + i, destination)
-                print(i + ' is transferred.')
-            
+                if mtime > ago:
+                    shutil.move(source + '/' + i, destination)
+                    print(i + ' is transferred.')
+                
                 
     def exit_program(self):
         
